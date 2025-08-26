@@ -1,7 +1,7 @@
 /*
     DESCRIPTION:
     Debian 12 storage variables.
-    Packer Plugin for VMware vSphere: 'vsphere-iso' builder.
+    Packer Plugin for Proxmox: 'proxmox-iso' builder.
 */
 
 // VM Storage Settings

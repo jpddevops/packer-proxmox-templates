@@ -44,7 +44,7 @@ vm_disk_partitions = [
 //  fills up the rest of the space on the VM disk.
 
 // VM EFI Settings
-vm_efi_storage_pool      = "pool0"
+vm_efi_storage_pool      = "VM_Pool"
 vm_efi_type              = "4m"
 vm_efi_pre_enrolled_keys = false
 
@@ -253,7 +253,7 @@ vm_disk_lvm = [
 //   NOTE: This requires the vm_bios to be set to 'ovmf'!
 
 //VM EFI Settings
-vm_efi_storage_pool      = "pool0"
+vm_efi_storage_pool      = "VM_Pool"
 vm_efi_type              = "4m"
 vm_efi_pre_enrolled_keys = false
 

@@ -60,21 +60,26 @@ variable "vm_os_timezone" {
 variable "vm_os_family" {
   type        = string
   description = "The guest operating system family. Used for naming. (e.g. 'linux')"
+  default     = "linux"
 }
 
 variable "vm_os_name" {
   type        = string
-  description = "The guest operating system name. Used for naming. (e.g. 'ubuntu')"
+  description = "The guest operating system name. Used for naming. (e.g. 'debian')"
+  default     = "debian"
 }
 
 variable "vm_os_version" {
   type        = string
-  description = "The guest operating system version. Used for naming. (e.g. '22-04-lts')"
+  description = "The guest operating system version. Used for naming. (e.g. '12')"
+  default     = "12"
+
 }
 
 variable "vm_os_type" {
   type        = string
   description = "The guest operating system type. (e.g. 'l26')"
+  default     = "l26"
 }
 
 variable "vm_bios" {
@@ -97,7 +102,6 @@ variable "vm_firmware_path" {
 variable "vm_efi_storage_pool" {
   type        = string
   description = "Set the UEFI disk storage location. (e.g. 'local-lvm')"
-  default     = "local-lvm"
 }
 
 variable "vm_efi_type" {
@@ -115,31 +119,37 @@ variable "vm_efi_pre_enrolled_keys" {
 variable "vm_cpu_count" {
   type        = number
   description = "The number of virtual CPUs. (e.g. '2')"
+  default     = 2
 }
 
 variable "vm_cpu_sockets" {
   type        = number
   description = "The number of virtual CPU sockets. (e.g. '1')"
+  default     = 1
 }
 
 variable "vm_cpu_type" {
   type        = string
   description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to kvm64."
+  default     = "kvm64"
 }
 
 variable "vm_mem_size" {
   type        = number
   description = "The size for the virtual memory in MB. (e.g. '2048')"
+  default     = 4096
 }
 
 variable "vm_disk_controller_type" {
   type        = string
   description = "The SCSI controller model to emulate. (e.g. 'virtio-scsi-pci')"
+  default     = "virtio-scsi-pci"
 }
 
 variable "vm_disk_type" {
   type        = string
   description = "The type of disk to emulate. (e.g. 'virtio')"
+  default     = "virtio"
 }
 
 variable "vm_storage_pool" {
@@ -150,26 +160,19 @@ variable "vm_storage_pool" {
 variable "vm_disk_size" {
   type        = string
   description = "The size for the virtual disk in GB. (e.g. '32G')"
+  default     = "32G"
 }
 
 variable "vm_disk_format" {
   type        = string
   description = "The format of the file backing the disk. (e.g. 'qcow2')"
+  default     = "raw" 
 }
 
 variable "vm_network_card_model" {
   type        = string
   description = "The model of the virtual network adapter to emulate. (e.g. 'virtio')"
-}
-
-variable "vm_bridge_interface" {
-  type        = string
-  description = "The name of the Proxmox bridge to attach the adapter to."
-}
-
-variable "vm_vlan_tag" {
-  type        = string
-  description = "If the adapter should tag packets, give the VLAN ID. (e.g. '102')"
+  default     = "virtio"
 }
 
 // Cloud-Init Settings
@@ -187,19 +190,17 @@ variable "common_iso_storage" {
   description = "The name of the source Proxmox storage location for ISO images. (e.g. 'local-lvm')"
 }
 
-variable "iso_path" {
-  type        = string
-  description = "The path on the source Proxmox storage location for ISO images. (e.g. 'iso')"
-}
 
 variable "iso_file" {
   type        = string
   description = "The file name of the ISO image used by the vendor. (e.g. 'ubuntu-<version>-live-server-amd64.iso')"
+  default     = "debian-12.11.0-amd64-netinst.iso"
 }
 
 variable "iso_checksum" {
   type        = string
   description = "The checksum value of the ISO image provided by the vendor."
+  default     = "https://cdimage.debian.org/mirror/cdimage/archive/12.11.0/amd64/iso-cd/SHA512SUMS"
 }
 
 // Boot Settings
@@ -234,21 +235,13 @@ variable "common_http_port_max" {
 variable "vm_boot" {
   type        = string
   description = "The boot order for virtual machine devices. (e.g. 'order=virtio0;ide2;net0')"
+  default     = "order=virtio0;ide2;net0"
 }
 
 variable "vm_boot_wait" {
   type        = string
   description = "The time to wait after booting the initial VM before typing the boot_command (e.g '10s')"
-}
-
-variable "common_ip_wait_timeout" {
-  type        = string
-  description = "Time to wait for guest operating system IP address response."
-}
-
-variable "common_shutdown_timeout" {
-  type        = string
-  description = "Time to wait for guest operating system shutdown."
+  default     = "5s"
 }
 
 // Communicator Settings and Credentials

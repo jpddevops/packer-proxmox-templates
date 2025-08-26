@@ -6,7 +6,7 @@ packer {
   required_plugins {
     vsphere = {
       source  = "github.com/hashicorp/proxmox"
-      version = ">= 1.4.2"
+      version = ">= 1.2.1"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
@@ -180,7 +180,7 @@ source "proxmox-iso" "debian" {
   boot_command      = local.boot_command
 
   boot_iso {
-    iso_file      = "${var.common_iso_storage}:${var.iso_path}/${var.iso_file}"
+    iso_file      = "${var.common_iso_storage}:iso/${var.iso_file}"
     unmount       = true
     iso_checksum  = "${var.iso_checksum}"
   }
@@ -205,28 +205,7 @@ source "proxmox-iso" "debian" {
 
 //  BLOCK: build
 //  Defines the builders to run, provisioners, and post-processors.
-
+# Build Definition to create the VM Template
 build {
-  sources = ["source.vsphere-iso.linux-debian"]
-
-  provisioner "ansible" {
-    user                   = var.build_username
-    galaxy_file            = "${path.cwd}/ansible/linux-requirements.yml"
-    galaxy_force_with_deps = true
-    playbook_file          = "${path.cwd}/ansible/linux-playbook.yml"
-    roles_path             = "${path.cwd}/ansible/roles"
-    ansible_env_vars = [
-      "ANSIBLE_CONFIG=${path.cwd}/ansible/ansible.cfg",
-      "ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3"
-    ]
-    extra_arguments = [
-      "--extra-vars", "display_skipped_hosts=false",
-      "--extra-vars", "build_username=${var.build_username}",
-      "--extra-vars", "build_key='${var.build_key}'",
-      "--extra-vars", "ansible_username=${var.ansible_username}",
-      "--extra-vars", "ansible_key='${var.ansible_key}'",
-      "--extra-vars", "enable_cloudinit=${var.vm_guest_os_cloudinit}",
-    ]
-  }
-
+  sources = ["source.proxmox-iso.debian"]
 }

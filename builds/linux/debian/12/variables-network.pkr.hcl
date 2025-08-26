@@ -1,10 +1,26 @@
 /*
     DESCRIPTION:
     Debian 12 network variables.
-    Packer Plugin for VMware vSphere: 'vsphere-iso' builder.
+    Packer Plugin for Proxmox: 'proxmox-iso' builder.
 */
 
 // VM Network Settings
+
+variable "vm_bridge_interface" {
+  type        = string
+  description = "The name of the Proxmox bridge to attach the adapter to."
+}
+
+variable "vm_vlan_tag" {
+  type        = string
+  description = "If the adapter should tag packets, give the VLAN ID. (e.g. '102')"
+}
+
+variable "vm_network_device" {
+  type        = string
+  description = "The network device of the VM."
+  default     = "ens192"
+}
 
 variable "vm_ip_address" {
   type        = string

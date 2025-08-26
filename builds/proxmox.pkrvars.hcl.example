@@ -7,7 +7,7 @@
 // Proxmox Credentials
 proxmox_api_token_id        = "name@realm!token"
 proxmox_api_token_secret    = "<token secret>"
-proxmox_insecure_connection = false
+proxmox_insecure_connection = true
 
 // Proxmox Specific Settings
 proxmox_hostname = "<FQDN or IP of proxmox server>"

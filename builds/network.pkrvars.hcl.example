@@ -1,13 +1,13 @@
-# © Broadcom. All Rights Reserved.
-# The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
-# SPDX-License-Identifier: BSD-2-Clause
-
 /*
     DESCRIPTION:
     Network variables used for all builds.
     - Variables are passed to and used by guest operating system configuration files (e.g., ks.cfg).
 
 */
+
+// Proxmox settings for VM templates
+vm_bridge_interface  = "vmbr0"
+vm_vlan_tag          = "15"
 
 // VM Network Settings (default DHCP)
 // vm_ip_address = "172.16.100.192"

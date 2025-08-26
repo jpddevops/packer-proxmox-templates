@@ -2,13 +2,13 @@
 # https://www.debian.org/releases/bookworm/amd64/
 
 # Locale and Keyboard
-d-i debian-installer/locale string ${vm_guest_os_language}
-d-i keyboard-configuration/xkb-keymap select ${vm_guest_os_keyboard}
+d-i debian-installer/locale string ${vm_os_language}
+d-i keyboard-configuration/xkb-keymap select ${vm_os_keyboard}
 
 # Clock and Timezone
 d-i clock-setup/utc boolean true
 d-i clock-setup/ntp boolean true
-d-i time/zone string ${vm_guest_os_timezone}
+d-i time/zone string ${vm_os_timezone}
 
 # Grub and Reboot Message
 d-i finish-install/reboot_in_progress note
